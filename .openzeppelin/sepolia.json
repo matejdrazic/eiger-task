@@ -1,0 +1,52 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0xf49783EA17D75DcaEBe216b5f0089cc2e57e7F62",
+      "txHash": "0x8b7dbd18e94f9449f7609e8563790665d5d0ce4d45fd73f7e2e07f9c20f2757b",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "cc97b5a377b1d5d3b7c3374e53997a7137bdd7f220d06a94bb030182ba90d09a": {
+      "address": "0xA70De086f2b2984369631E12851D5802FF7D2137",
+      "txHash": "0x700d509fadd641fc8fe0a522b045c8bcb533bf0be68a1cc58b95b503bdde15e4",
+      "layout": {
+        "solcVersion": "0.8.24",
+        "storage": [
+          {
+            "label": "swapRouter",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "Swappy",
+            "src": "contracts/Swappy.sol:13"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "Swappy",
+            "src": "contracts/Swappy.sol:17"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}

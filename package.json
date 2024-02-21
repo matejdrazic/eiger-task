@@ -1,0 +1,33 @@
+{
+  "name": "eiger-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox-viem": "^2.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "@nomicfoundation/hardhat-viem": "^1.0.0",
+    "@openzeppelin/hardhat-upgrades": "^3.0.3",
+    "@types/chai": "^4.2.0",
+    "@types/chai-as-promised": "^7.1.6",
+    "@types/mocha": ">=9.1.0",
+    "@types/node": ">=16.0.0",
+    "chai": "^4.2.0",
+    "hardhat": "^2.20.1",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.0",
+    "ts-node": ">=8.0.0",
+    "typescript": "~5.0.4",
+    "viem": "^1.15.1"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "@openzeppelin/contracts": "^5.0.1",
+    "@uniswap/sdk-core": "^4.1.2",
+    "@uniswap/v3-periphery": "^1.4.4",
+    "@uniswap/v3-sdk": "^3.10.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.11.1"
+  }
+}
