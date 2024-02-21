@@ -74,6 +74,7 @@ contract Swappy is ERC20Swapper {
         // swapRouter = _swapRouter;
         // WETH = _WETH;
 
+
         // Approve the router to spend WETH
         _approveWETH();
     }
@@ -84,6 +85,7 @@ contract Swappy is ERC20Swapper {
         uint256 minAmount,
         uint24 poolFee
     ) external payable returns (uint256) {
+        
         // Uniswap router expects WETH, so we need to wrap the Ether
         IWETH(WETH).deposit{value: msg.value}();
 
