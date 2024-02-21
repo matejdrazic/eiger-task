@@ -26,10 +26,6 @@ describe("Swappy", function () {
 
     before(async function () {
 
-        // Deploy Swappy
-        const SwappyFactory = await ethers.getContractFactory("Swappy");
-        Swappy = await upgrades.deployProxy(SwappyFactory, [SWAP_ROUTER_ADDRESS, WETH_ADDRESS]);
-
         // Instantiate Uniswap Quoter
         Quoter = await ethers.getContractAt(QuoterJson.abi, QUOTER_ADDRESS);
 
@@ -40,6 +36,25 @@ describe("Swappy", function () {
         [owner] = await ethers.getSigners();
         ownerAddress = await owner.getAddress();
     })
+
+    it("Should not initialize Swappy with zero address for swapRouter or WETH", async function () {
+        
+        const SwappyFactory = await ethers.getContractFactory("Swappy");
+
+        await expect(upgrades.deployProxy(SwappyFactory, [ethers.ZeroAddress, WETH_ADDRESS])).to.rejectedWith("revert");
+
+        await expect(upgrades.deployProxy(SwappyFactory, [SWAP_ROUTER_ADDRESS, ethers.ZeroAddress])).to.rejectedWith("revert");
+    });
+
+    it("Should successfully deploy and initialize Swappy", async function () {
+
+        const SwappyFactory = await ethers.getContractFactory("Swappy");
+        Swappy = await upgrades.deployProxy(SwappyFactory, [SWAP_ROUTER_ADDRESS, WETH_ADDRESS]);
+
+        // Check that Swappy is initialized
+        expect(await Swappy.swapRouter()).to.equal(SWAP_ROUTER_ADDRESS);
+        expect(await Swappy.WETH()).to.equal(WETH_ADDRESS);
+    });
 
     it("Should swap tokens", async function () {
 
