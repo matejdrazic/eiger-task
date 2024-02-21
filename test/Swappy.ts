@@ -42,7 +42,8 @@ describe("Swappy", function () {
          * Swap 1 WETH for USDT
          * Pass `quotedAmountOut` as the minimum amount of USDT to receive
          */
-        await Swappy.swapEtherToToken(USDT_ADDRESS, quotedAmountOut, 500, { value: parseEther("1") });
+        await expect(Swappy.swapEtherToToken(USDT_ADDRESS, quotedAmountOut, 500, { value: parseEther("1") }))
+            .to.emit(Swappy, "SwapExecuted").withArgs(USDT_ADDRESS, parseEther("1"), quotedAmountOut, quotedAmountOut);
     });
 
     it("Should not swap tokens because output amount is less than minimum", async function () {

@@ -37,14 +37,21 @@ contract Swappy is ERC20Swapper {
     ///////////////////////////// ERRORS ///////////////////////////////////
     error AlreadyInitialized();
     error ZeroAddress();
-    
+
 
     function initialize(address _swapRouter, address _WETH) external {
         if (_swapRouter == address(0) || _WETH == address(0))
             revert ZeroAddress();
-        if (swapRouter != address(0)) revert AlreadyInitialized();
 
         // Some Yul just for flexing :)
+        assembly {
+            if sload(swapRouter.slot) {
+                revert(0, 0)
+            }
+        }
+        // This is the equivalent of the following:
+        // if (swapRouter != address(0)) revert AlreadyInitialized();
+
         assembly {
             sstore(swapRouter.slot, _swapRouter)
             sstore(WETH.slot, _WETH)
