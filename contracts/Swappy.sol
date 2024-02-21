@@ -11,6 +11,7 @@ import {ERC20Swapper} from "./ISwappy.sol";
 /**
  * The `Swappy` contract is a proxy contract that allows users to swap tokens on Uniswap V3.
  * It is initialized with the address of the Uniswap V3 SwapRouter and the WETH token.
+ * This contract follows the Transparent Proxy pattern, see more: https://docs.openzeppelin.com/contracts/4.x/api/proxy#transparent_proxy
  */
 contract Swappy is ERC20Swapper {
 
@@ -110,7 +111,7 @@ contract Swappy is ERC20Swapper {
     }
 
     /**
-     * Approves max amount of WETH to be transferred by Uniswap Router
+     * Approves max amount of WETH to be transferred by Uniswap Router during swaps.
      */
     function _approveWETH() private {
         bool success = IWETH(WETH).approve(swapRouter, type(uint256).max);
