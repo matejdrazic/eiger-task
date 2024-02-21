@@ -9,9 +9,10 @@ import {ERC20Swapper} from "./ISwappy.sol";
 
 import "hardhat/console.sol";
 
-// Big comment section on swappy system and its' features
-// It was a design choice not to return the wrapped ether leftover from the transaction because it could be a small amount
-// and we leave the choice to the user to unwrap it or not
+/**
+ * The `Swappy` contract is a proxy contract that allows users to swap tokens on Uniswap V3.
+ * It is initialized with the address of the Uniswap V3 SwapRouter and the WETH token.
+ */
 contract Swappy is ERC20Swapper {
 
     // Wrapped Ether address on Sepolia testnet
@@ -31,18 +32,26 @@ contract Swappy is ERC20Swapper {
         uint256 amountOut,
         uint256 amountOutMinimum
     );
-    
+
 
     ///////////////////////////// ERRORS ///////////////////////////////////
     error AlreadyInitialized();
     error ZeroAddress();
+    
 
     function initialize(address _swapRouter, address _WETH) external {
         if (_swapRouter == address(0) || _WETH == address(0))
             revert ZeroAddress();
         if (swapRouter != address(0)) revert AlreadyInitialized();
-        swapRouter = _swapRouter;
-        WETH = _WETH;
+
+        // Some Yul just for flexing :)
+        assembly {
+            sstore(swapRouter.slot, _swapRouter)
+            sstore(WETH.slot, _WETH)
+        }
+        // This is the equivalent of the following:
+        // swapRouter = _swapRouter;
+        // WETH = _WETH;
 
         // Approve the router to spend WETH
         _approveWETH();

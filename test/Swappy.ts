@@ -7,6 +7,14 @@ import { parseEther } from "ethers";
 import QuoterJson from '@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json';
 import ERC20Json from "@openzeppelin/contracts/build/contracts/IERC20.json";
 
+/**
+ * This test suite is for the Swappy contract
+ * Tests are conducted on a fork of the Ethereum mainnet: see hardhat.config.ts
+ * We are using existing Uniswap contracts on the mainnet for testing
+ * 
+ * Run with: npx hardhat test
+ */
+
 describe("Swappy", function () {
 
     let Swappy: Contract;
@@ -44,6 +52,12 @@ describe("Swappy", function () {
 
         // Transaction should fail since we expect to receive more than quotedAmountOut
         await expect(Swappy.swapEtherToToken(USDT_ADDRESS, quotedAmountOut + 1n, 500, { value: parseEther("1") })).to.rejectedWith("revert");
+    });
+
+    it("Should not allow initializing a second time", async function () {
+
+        await expect(Swappy.initialize(SWAP_ROUTER_ADDRESS, WETH_ADDRESS)).to.rejectedWith("revert");
+
     });
 
 });
