@@ -1,11 +1,12 @@
 import { ethers, upgrades } from "hardhat";
+import { SWAP_ROUTER_ADDRESS, WETH_ADDRESS } from "./sepolia-addresses";
 
 async function main() {
 
   const SwappyFactory = await ethers.getContractFactory("Swappy");
 
   // add comment here explaining what kind of proxy pattern is used
-  const Swappy = await upgrades.deployProxy(SwappyFactory, [process.env.SWAP_ROUTER_ADDRESS]);
+  const Swappy = await upgrades.deployProxy(SwappyFactory, [SWAP_ROUTER_ADDRESS, WETH_ADDRESS]);
 
   console.log(
     `Swappy deployed to ${await Swappy.getAddress()}`
