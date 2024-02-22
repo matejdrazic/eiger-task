@@ -1,4 +1,4 @@
 
-// Addresses on Sepolia
+// Addresses on Goerli
 export const SWAP_ROUTER_ADDRESS = "0xE592427A0AEce92De3Edee1F18E0157C05861564"
 export const WETH_ADDRESS = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6"
