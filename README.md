@@ -35,6 +35,7 @@ Following properties of the contract implementation will be evaluated in this ex
 
 ## Discussion of solution
 
+- Setup repo with running `yarn` and filling .env variables
 - Solution is implemented with transparent proxy which has an admin set on the proxy contract. This admin can upgrade the contract in case of an emergency. Transparent proxy was used for simplicity, if gas efficiency were a big priority - UUPS would most likely be used.
 - Current contract is fairly simple in its' implementation and can be used by non-EOA. To add features such as more functionality on interacting with Uniswap pools (providing liquidity, ...) - the contract gets more complicated and we have to be more careful in dealing with Uniswap integration.
 - Yul is written as a fun exercise and demonstration of skills - I would think twice before pushing Yul code to production.

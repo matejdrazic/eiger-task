@@ -1,6 +1,8 @@
 import { ethers, upgrades } from "hardhat";
 import { SWAP_ROUTER_ADDRESS, WETH_ADDRESS } from "./addresses";
 
+// Run with: npx hardhat run scripts/deploy.ts --network NETWORK_NAME
+
 async function main() {
 
   const SwappyFactory = await ethers.getContractFactory("Swappy");
