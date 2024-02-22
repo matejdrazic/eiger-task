@@ -1,5 +1,5 @@
 import { ethers, upgrades } from "hardhat";
-import { SWAP_ROUTER_ADDRESS, WETH_ADDRESS } from "./sepolia-addresses";
+import { SWAP_ROUTER_ADDRESS, WETH_ADDRESS } from "./addresses";
 
 async function main() {
 
